@@ -1,21 +1,39 @@
 body {
   margin: 0;
-  padding: 50px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 0;
 }
 
-a {
-  color: #00b7ff;
+/*////////////Header//////////////*/
+.header {
+  z-index: -10;
+  overflow: hidden;
+}
+
+.header h1 {
+  font-size: 3.5rem;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.header-img {
+  z-index: -1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  padding-top: -70px;
 }
 
 #map {
-  width: 45vw;
-  height: 50vh;
+  height: 100vh;
   position: sticky !important; 
   top: 0
 }
 
-.container {
-  
+@media screen and (max-width : 931px) {
+  #map {
+    height: 40vh;
+  }
 }
 
