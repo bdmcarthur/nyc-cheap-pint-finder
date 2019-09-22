@@ -1,8 +1,13 @@
 body {
+  font-family: 'Josefin Sans', sans-serif;
   margin: 0;
   padding: 0;
+  font-size: 1.5em;
 }
 
+.dropdown-menu a, .navbar-brand {
+  font-size: 1.5em;
+}
 /*////////////Header//////////////*/
 .header {
   z-index: -10;
@@ -10,8 +15,8 @@ body {
 }
 
 .header h1 {
-  font-size: 3.5rem;
-  top: 40%;
+  font-size: 6em;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -35,5 +40,7 @@ body {
   #map {
     height: 40vh;
   }
+  .header h1 {
+    font-size: 1.5em;
 }
 
