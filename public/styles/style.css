@@ -7,3 +7,15 @@ body {
 a {
   color: #00b7ff;
 }
+
+#map {
+  width: 45vw;
+  height: 50vh;
+  position: sticky !important; 
+  top: 0
+}
+
+.container {
+  
+}
+
