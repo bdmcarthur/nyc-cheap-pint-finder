@@ -32,12 +32,22 @@ body {
 
 #map {
   height: 100vh;
-  position: sticky !important; 
-  top: 0
+}
+
+.mapContainer {
+  height: 100vh;
+  top: 80px;
+}
+
+.barDescription {
+  font-size: 1.3rem;
 }
 
 @media screen and (max-width : 931px) {
   #map {
+    height: 40vh;
+  }
+  .mapContainer {
     height: 40vh;
   }
   .header h1 {

@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const barSchema = new mongoose.Schema({
   name: {
@@ -9,8 +9,11 @@ const barSchema = new mongoose.Schema({
   address: {
     type: String
   },
-  latlng: {
-    type: String
+  lat: {
+    type: Number
+  },
+  lng: {
+    type: Number
   },
   type: {
     type: String
@@ -27,4 +30,4 @@ const barSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Bar', barSchema);
+module.exports = mongoose.model("Bars", barSchema, "Bars");
