@@ -1,11 +1,12 @@
 body {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   margin: 0;
   padding: 0;
   font-size: 1.5em;
 }
 
-.dropdown-menu a, .navbar-brand {
+.dropdown-menu a,
+.navbar-brand {
   font-size: 1.5em;
 }
 /*////////////Header//////////////*/
@@ -43,7 +44,24 @@ body {
   font-size: 1.3rem;
 }
 
-@media screen and (max-width : 931px) {
+.bar h2 {
+  padding-top: 6rem;
+  margin-top: -5rem;
+  font-weight: 600;
+}
+
+.neighborhood {
+  padding: 6rem 0 0.1rem 0;
+  margin-top: -5rem;
+  font-weight: 600;
+  font-size: 3.5rem;
+  border-bottom: 2px solid black;
+}
+
+.navbar {
+  background-color: black;
+}
+@media screen and (max-width: 931px) {
   #map {
     height: 40vh;
   }
@@ -52,5 +70,13 @@ body {
   }
   .header h1 {
     font-size: 1.5em;
+  }
+  .bar {
+    padding-top: 25rem;
+    margin-top: -24rem;
+  }
+  .neighborhood {
+    padding-top: 25rem;
+    margin-top: -24rem;
+  }
 }
-
