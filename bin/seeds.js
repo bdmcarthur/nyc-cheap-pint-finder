@@ -80,8 +80,8 @@ let barsList = [
   {
     name: "KeyBar",
     address: "432 E 13th St, New York, NY 10009",
-    lat: 40.7299,
-    lng: -73.98187,
+    lat: 40.730097,
+    lng: -73.981746,
     type: "All the Time",
     description: "Haven't checked this one out yet!",
     neighborhood: "East Village",
@@ -164,8 +164,8 @@ let barsList = [
   {
     name: "The Stumble Inn",
     address: "1454 2nd Ave, New York, NY 10021",
-    lat: 40.7226197,
-    lng: 73.9885519,
+    lat: 40.771287,
+    lng: -73.956238,
     type: "All the Time",
     description: "Haven't Checked this one out yet!",
     neighborhood: "Greenwich Village",
@@ -195,8 +195,8 @@ let barsList = [
   {
     name: "Art Bar",
     address: "52 8th Ave, New York, NY 10014",
-    lat: 40.74292,
-    lng: -73.98198,
+    lat: 40.738567,
+    lng: -74.003656,
     type: "Happy Hour Only",
     description:
       "Their Happy Hour runs from 4pm-7pm and all draught beers are $4. They have a small selection of good beers. This place feels like two bars in one. The front is regular bar seating and big comfy booths and it's a bit loud. The back room is a lounge type set up with vintage couches and candles and no loud music.",

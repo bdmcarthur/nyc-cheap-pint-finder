@@ -1,3 +1,4 @@
+let barList = [];
 let markers = [];
 let map;
 let container = document.querySelector("#barContainer");
@@ -9,13 +10,13 @@ window.addEventListener("load", event => {
   init();
 });
 
-// Gets Markers from Database
+// Gets barList from Database
 function getBars() {
   axios
     .get("/bars")
     .then(response => {
-      response.data.bars.map(bar => markers.push(bar));
-      markers.map(item => {
+      response.data.bars.map(bar => barList.push(bar));
+      barList.map(item => {
         if (neighborhood.indexOf(item.neighborhood) === -1) {
           neighborhood.push(item.neighborhood);
         }
@@ -45,11 +46,11 @@ function init() {
 }
 
 function placeMarkers() {
-  for (let i = 0; i < markers.length; i++) {
+  for (let i = 0; i < barList.length; i++) {
     let marker = new google.maps.Marker({
       position: {
-        lat: markers[i].lat,
-        lng: markers[i].lng
+        lat: barList[i].lat,
+        lng: barList[i].lng
       },
       icon: {
         scaledSize: new google.maps.Size(30, 30),
@@ -58,32 +59,32 @@ function placeMarkers() {
       },
       map: map
     });
-
     let content =
       `<div>` +
-      `<h5>${markers[i].name}</h5>` +
-      `<p>${markers[i].address}</p>` +
+      `<h5>${barList[i].name}</h5>` +
+      `<p>${barList[i].address}</p>` +
       `</div>`;
 
     infowindow = new google.maps.InfoWindow({
       content: content
     });
 
-    google.maps.event.addListener(map, "click", function() {
-      infowindow.close();
-    });
+    // google.maps.event.addListener(map, "click", function() {
+    //   infowindow.close();
+    // });
 
     google.maps.event.addListener(
       marker,
       "click",
       (function(marker, i) {
         return function() {
-          window.location = "#" + markers[i].name.replace(/\s/g, "");
+          window.location = "#" + barList[i].name.replace(/\s/g, "");
           infowindow.setContent(content);
           infowindow.open(map, marker);
         };
       })(marker, i)
     );
+    markers.push(marker);
   }
 }
 
@@ -93,16 +94,16 @@ function listBars() {
     container.innerHTML += `<h1 class="neighborhood" id=${neighborhood[
       i
     ].replace(/\s/g, "")}>${neighborhood[i]}</h1>`;
-    for (let j = 0; j < markers.length; j++) {
-      if (markers[j].neighborhood === neighborhood[i]) {
-        container.innerHTML += `<div class="bar" id=${markers[j].name.replace(
+    for (let j = 0; j < barList.length; j++) {
+      if (barList[j].neighborhood === neighborhood[i]) {
+        container.innerHTML += `<div class="bar" id=${barList[j].name.replace(
           /\s/g,
           ""
         )}>
-        <h2 class="mb-1" >${markers[j].name}</h2>
-        <p class="font-italic barDescription mb-0">${markers[j].address}</p>
-        <p class="text-muted barDescription mb-2">${markers[j].type}</p>
-        <p class="barDescription">${markers[j].description}</p>
+        <h2 class="mb-1" >${barList[j].name}</h2>
+        <p class="font-italic barDescription mb-0">${barList[j].address}</p>
+        <p class="text-muted barDescription mb-2">${barList[j].type}</p>
+        <p class="barDescription">${barList[j].description}</p>
       </div>`;
       }
     }
@@ -149,33 +150,35 @@ function changeMap() {
   var active = document.querySelector(".active");
   var activeBarID = document.getElementsByClassName("active")[0].id;
 
-  markers.map((element, index) => {
+  barList.map((element, index) => {
     if (element.name.replace(/\s/g, "") === activeBarID) {
       let lat = element.lat;
       let long = element.lng;
-      let marker = new google.maps.Marker({
-        position: {
-          lat: markers[index].lat,
-          lng: markers[index].lng
-        },
-        icon: {
-          scaledSize: new google.maps.Size(30, 30),
-          labelOrigin: new google.maps.Point(16, 45),
-          url: "/images/icon.png"
-        },
-        map: map
-      });
+      // let marker = new google.maps.Marker({
+      //   position: {
+      //     lat: barList[index].lat,
+      //     lng: barList[index].lng
+      //   },
+      //   icon: {
+      //     scaledSize: new google.maps.Size(30, 30),
+      //     labelOrigin: new google.maps.Point(16, 45),
+      //     url: "/images/icon.png"
+      //   },
+      //   map: map
+      // });
 
       let content =
         `<div>` +
-        `<h5>${markers[index].name}</h5>` +
-        `<p>${markers[index].address}</p>` +
+        `<h5>${barList[index].name}</h5>` +
+        `<p>${barList[index].address}</p>` +
         `</div>`;
 
       map.panTo({ lat: lat, lng: long });
       infowindow.disableAutoPan = true;
       infowindow.setContent(content);
-      infowindow.open(map, marker);
+      console.log("m", markers[index]);
+
+      infowindow.open(map, markers[index]);
     }
   });
 }
