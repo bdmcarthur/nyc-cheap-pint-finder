@@ -37,7 +37,7 @@ body {
 
 .mapContainer {
   height: 100vh;
-  top: 80px;
+  top: 70px;
 }
 
 .barDescription {
@@ -54,7 +54,7 @@ body {
   padding: 6rem 0 0.1rem 0;
   margin-top: -5rem;
   font-weight: 600;
-  font-size: 3.5rem;
+  font-size: 3.25rem;
   border-bottom: 2px solid black;
 }
 
@@ -72,11 +72,18 @@ body {
     font-size: 1.5em;
   }
   .bar {
-    padding-top: 25rem;
-    margin-top: -24rem;
+    padding-top: 27rem;
+    margin-top: -26rem;
+  }
+  .bar h2 {
+    font-size: 1.5rem;
+  }
+  .bar p {
+    font-size: 1rem;
   }
   .neighborhood {
-    padding-top: 25rem;
-    margin-top: -24rem;
+    padding-top: 28rem;
+    margin-top: -27rem;
+    font-size: 2rem;
   }
 }

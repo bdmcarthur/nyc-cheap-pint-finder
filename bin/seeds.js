@@ -147,7 +147,7 @@ let barsList = [
     lng: -73.94901,
     type: "All the Time",
     description: "Haven't checked this one out yet",
-    neighborhood: "Greenwich Village",
+    neighborhood: "Upper East Side",
     image: "NA"
   },
   {
@@ -158,7 +158,7 @@ let barsList = [
     type: "All the Time",
     description:
       "They always have $3 Piels cans but also a good selection of $3-$4 pints during Happy Hour. It runs from 5pm-8pm and is buy one get one free on almost all drinks. They give you a plastic toy to use to redeem your free drink. It was insanely loud when I was there but maybe that was just a weird night",
-    neighborhood: "Greenwich Village",
+    neighborhood: "East Village",
     image: "NA"
   },
   {
@@ -168,7 +168,7 @@ let barsList = [
     lng: -73.956238,
     type: "All the Time",
     description: "Haven't Checked this one out yet!",
-    neighborhood: "Greenwich Village",
+    neighborhood: "Upper East Side",
     image: "NA"
   },
   {
@@ -189,7 +189,7 @@ let barsList = [
     lng: -73.98198,
     type: "All the Time",
     description: "Haven't checked this one out yet!",
-    neighborhood: "Murrary Hill",
+    neighborhood: "Murray Hill",
     image: "NA"
   },
   {
