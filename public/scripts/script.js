@@ -19,6 +19,8 @@ const initMap = () => {
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(40.7263542, -73.988742),
     zoom: 14,
+    styles: mapStyles,
+
     mapTypeControl: false,
     streetViewControl: false,
     fullscreenControlOptions: {
@@ -157,8 +159,8 @@ function changeMap() {
 
       let content =
         `<div>` +
-        `<h5>${barList[index].name}</h5>` +
-        `<p>${barList[index].address}</p>` +
+        `<h5 class="info-name">${barList[index].name}</h5>` +
+        `<p class="info-address">${barList[index].address}</p>` +
         `</div>`;
 
       map.panTo({ lat: lat, lng: long });

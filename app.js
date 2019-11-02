@@ -9,7 +9,6 @@ const logger = require("morgan");
 const serveFavicon = require("serve-favicon");
 const mongoose = require("mongoose");
 const indexRouter = require("./routes/index");
-const nodemailer = require("nodemailer");
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
