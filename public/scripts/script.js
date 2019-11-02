@@ -97,9 +97,9 @@ function placeMarkers() {
 function listBars() {
   container.innerHTML = "";
   for (let i = 0; i < neighborhood.length; i++) {
-    container.innerHTML += `<h1 class="neighborhood" id=${neighborhood[
+    container.innerHTML += `<h2 class="neighborhood" id=${neighborhood[
       i
-    ].replace(/\s/g, "")}>${neighborhood[i]}</h1>`;
+    ].replace(/\s/g, "")}>${neighborhood[i]}</h2>`;
     for (let j = 0; j < barList.length; j++) {
       if (barList[j].neighborhood === neighborhood[i]) {
         container.innerHTML += `<div class="bar" id=${barList[j].name.replace(
@@ -114,11 +114,6 @@ function listBars() {
       }
     }
   }
-  // container.innerHTML += `<Footer>
-  // <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris ultrices eros in cursus turpis massa tincidunt. Mauris nunc congue nisi vitae suscipit. Diam vulputate ut pharetra sit amet aliquam id. Nisl condimentum id venenatis a. Ipsum dolor sit amet consectetur. Magnis dis parturient montes nascetur ridiculus mus mauris vitae. Purus semper eget duis at tellus. Sapien et ligula ullamcorper malesuada proin. Feugiat nibh sed pulvinar proin gravida hendrerit lectus. Dictumst quisque sagittis purus sit amet volutpat consequat. Donec pretium vulputate sapien nec. letius vel pharetra vel turpis nunc. Congue nisi vitae suscipit tellus mauris a. Ullamcorper eget nulla facilisi etiam. At lectus urna duis convallis convallis tellus. Massa vitae tortor condimentum lacinia.
-
-  // Ultrices neque ornare aenean euismod elementum. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Tristique sollicitudin nibh sit amet. Sed risus ultricies tristique nulla aliquet.</p>
-  // </Footer> `;
 }
 
 //Adds an active class to the main bar on the page
