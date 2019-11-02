@@ -173,3 +173,13 @@ function changeMap() {
     }
   });
 }
+
+// window.onscroll = () => {
+//   const nav = document.querySelector("#myTopnav");
+
+//   if (this.scrollY <= 10) {
+//     nav.className = "topnav";
+//   } else {
+//     nav.className = "topnav-scrolled";
+//   }
+// };

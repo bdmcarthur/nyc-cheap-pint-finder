@@ -11,12 +11,13 @@
   "dependencies": {
     "cookie-parser": "^1.4.4",
     "debug": "^4.1.1",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "hbs": "^4.0.4",
+    "hbs": "^4.0.6",
     "http-errors": "^1.7.3",
     "mongoose": "^=5.6.13",
     "morgan": "^1.9.1",
+    "nodemailer": "^6.3.1",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {

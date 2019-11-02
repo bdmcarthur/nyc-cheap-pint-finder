@@ -9,7 +9,7 @@ const logger = require("morgan");
 const serveFavicon = require("serve-favicon");
 const mongoose = require("mongoose");
 const indexRouter = require("./routes/index");
-
+const nodemailer = require("nodemailer");
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
@@ -26,6 +26,9 @@ app.use(serveFavicon(join(__dirname, "public/images", "favicon.ico")));
 app.use(express.static(join(__dirname, "public")));
 
 app.use("/", indexRouter);
+
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
