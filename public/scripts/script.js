@@ -5,12 +5,29 @@ let container = document.querySelector("#barContainer");
 let neighborhood = [];
 let infoWindow = null;
 let currentActive = "";
+let fullscreenBtn = document.querySelector(".fullscreen");
+let getLocationBtn = document.querySelector(".getLocation");
 
 ///////Event Listeners////////
 window.addEventListener("load", event => {
   getBars();
   initMap();
 });
+
+fullscreenBtn.addEventListener("click", event => {
+  let mapContainer = document.querySelectorAll(".mapContainer");
+  if (fullscreenBtn.innerHTML === "Close Map") {
+    mapContainer[0].classList.remove("col-12");
+    mapContainer[0].classList.add("col-sm-6");
+    fullscreenBtn.innerHTML = "Full Screen Map";
+  } else {
+    mapContainer[0].classList.remove("col-sm-6");
+    mapContainer[0].classList.add("col-12");
+    fullscreenBtn.innerHTML = "Close Map";
+  }
+});
+
+getLocationBtn.addEventListener("click", getLocation);
 
 window.addEventListener("scroll", activeClass);
 
@@ -23,9 +40,7 @@ const initMap = () => {
 
     mapTypeControl: false,
     streetViewControl: false,
-    fullscreenControlOptions: {
-      position: google.maps.ControlPosition.TOP_RIGHT
-    },
+    fullscreenControlOptions: false,
     zoomControlOptions: {
       position: google.maps.ControlPosition.TOP_RIGHT
     }
@@ -171,6 +186,27 @@ function changeMap() {
   });
 }
 
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function(position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        console.log(pos);
+        map.panTo(pos);
+        var marker = new google.maps.Marker({ position: pos, map: map });
+      },
+      function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      }
+    );
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+}
 // window.onscroll = () => {
 //   const nav = document.querySelector("#myTopnav");
 

@@ -66,6 +66,13 @@ h5 {
   top: 70px;
 }
 
+.map-buttons {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  bottom: 10%;
+}
+
 .barDescription {
   font-size: 1.3rem;
 }
