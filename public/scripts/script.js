@@ -1,18 +1,19 @@
 let barList = [];
-let markers = [];
+let markersList = [];
 let map;
 let container = document.querySelector("#barContainer");
 let neighborhood = [];
-let infoWindow = null;
-let currentActive = "";
+let popupList = [];
+let currentActive = [];
 let fullscreenBtn = document.querySelector(".fullscreen");
 let getLocationBtn = document.querySelector(".getLocation");
-
+let openMarker = null
 ///////Event Listeners////////
 window.addEventListener("load", event => {
   getBars();
   initMap();
 });
+
 
 fullscreenBtn.addEventListener("click", event => {
   let mapContainer = document.querySelectorAll(".mapContainer");
@@ -33,19 +34,24 @@ window.addEventListener("scroll", activeClass);
 
 //////////Functions////////////
 const initMap = () => {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: new google.maps.LatLng(40.7263542, -73.988742),
-    zoom: 14,
-    styles: mapStyles,
-
-    mapTypeControl: false,
-    streetViewControl: false,
-    fullscreenControlOptions: false,
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.TOP_RIGHT
-    }
+  map = new mapboxgl.Map({
+    container: 'map', // HTML container id
+    style: 'mapbox://styles/mapbox/streets-v8', // style URL
+    center: {
+      lat: 40.7263542,
+      lng: -73.988742
+    },
+    zoom: 12,
+    accessToken: 'pk.eyJ1IjoiYm1jYXJ0aHVyIiwiYSI6ImNrOGx0cTR3aDAzYnkzbHBjN2IzNzc2a2MifQ.16DiKikXbxrXWmYYBeQ0pw'
   });
-  infoWindow = new google.maps.InfoWindow();
+
+  var nav = new mapboxgl.NavigationControl({
+    showCompass: false,
+    showZoom: true
+  });
+
+  map.addControl(nav, "top-right");
+
 };
 
 // Gets barList from Database
@@ -71,42 +77,35 @@ function getBars() {
 
 function placeMarkers() {
   for (let i = 0; i < barList.length; i++) {
-    let marker = new google.maps.Marker({
-      position: {
-        lat: barList[i].lat,
-        lng: barList[i].lng
-      },
-      icon: {
-        scaledSize: new google.maps.Size(30, 30),
-        labelOrigin: new google.maps.Point(16, 45),
-        url: "/images/icon.png"
-      },
-      map: map
+    var markerHeight = 25,
+      markerRadius = 10,
+      linearOffset = 25;
+    var popupOffsets = {
+      'bottom': [0, -markerHeight],
+    };
+    var popup = new mapboxgl.Popup({
+        offset: popupOffsets
+      })
+      .setHTML(`<div class='HHHHHH'>` +
+        `<h5 class="info-name">${barList[i].name}</h5>` +
+        `<p class="info-address">${barList[i].address}</p>` +
+        `</div>`);
+    popupList.push(popup)
+    var el = document.createElement('div');
+    el.className = 'marker';
+    el.id = 'm' + barList[i].name.replace(/\s/g, "")
+
+    var marker = new mapboxgl.Marker(el)
+      .setLngLat([barList[i].lng, barList[i].lat])
+      .setPopup(popup)
+      .addTo(map)
+
+    markersList.push(marker)
+    let mark = document.getElementById(el.id)
+    mark.addEventListener("click", event => {
+      var slicedName = event.target.id.slice(1, event.target.id.length)
+      window.location = "#" + slicedName;
     });
-
-    let content =
-      `<div>` +
-      `<h5>${barList[i].name}</h5>` +
-      `<p>${barList[i].address}</p>` +
-      `</div>`;
-
-    infowindow = new google.maps.InfoWindow({
-      content: content
-    });
-
-    //Opens Infowindow On Click
-    google.maps.event.addListener(
-      marker,
-      "click",
-      (function(marker, i) {
-        return function() {
-          window.location = "#" + barList[i].name.replace(/\s/g, "");
-          infowindow.setContent(content);
-          infowindow.open(map, marker);
-        };
-      })(marker, i)
-    );
-    markers.push(marker);
   }
 }
 
@@ -164,41 +163,43 @@ function activeClass() {
 
 // Uses active class to center map on whichever bar is on the page and open infowindow
 function changeMap() {
+
   let active = document.querySelector(".active");
   let activeBarID = document.getElementsByClassName("active")[0].id;
-
   barList.map((element, index) => {
     if (element.name.replace(/\s/g, "") === activeBarID) {
       let lat = element.lat;
       let long = element.lng;
 
-      let content =
-        `<div>` +
-        `<h5 class="info-name">${barList[index].name}</h5>` +
-        `<p class="info-address">${barList[index].address}</p>` +
-        `</div>`;
+      popupList.map(item => {
+        item.remove()
+      })
 
-      map.panTo({ lat: lat, lng: long });
-      infowindow.disableAutoPan = true;
-      infowindow.setContent(content);
-      infowindow.open(map, markers[index]);
+      map.panTo([long, lat], {
+        animate: true
+      });
+
+      markersList[index].togglePopup()
+
     }
+
   });
 }
 
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
-      function(position) {
+      function (position) {
         var pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        console.log(pos);
         map.panTo(pos);
-        var marker = new google.maps.Marker({ position: pos, map: map });
+        var marker = new mapboxgl.Marker()
+          .setLngLat(pos)
+          .addTo(map);
       },
-      function() {
+      function () {
         handleLocationError(true, infoWindow, map.getCenter());
       }
     );
@@ -207,12 +208,3 @@ function getLocation() {
     handleLocationError(false, infoWindow, map.getCenter());
   }
 }
-// window.onscroll = () => {
-//   const nav = document.querySelector("#myTopnav");
-
-//   if (this.scrollY <= 10) {
-//     nav.className = "topnav";
-//   } else {
-//     nav.className = "topnav-scrolled";
-//   }
-// };

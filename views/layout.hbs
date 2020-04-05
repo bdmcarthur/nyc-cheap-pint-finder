@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>{{title}}</title>
-    <link href="/styles/fontawesome/css/all.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/styles/style.css" />
-   
-  </head>
-  <nav class="navbar navbar-expand-lg navbar-dark text-white fixed-top">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>{{title}}</title>
+  <link href="/styles/fontawesome/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/styles/style.css" />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark text-white fixed-top">
   <a class="navbar-brand ml-3" href="#"><i class="fas fa-beer"></i></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Search By Neighborhood
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item chelsea" href="#Chelsea">Chelsea</a>
-            <a class="dropdown-item eastvillage" href="#EastVillage">East Village</a>
-            <a class="dropdown-item financial" href="#FinancialDistrict">Financial District</a>
-            <a class="dropdown-item greenwich" href="#GreenwichVillage">Greenwich Village</a>
-            <a class="dropdown-item hell" href="#Hell'sKitchen">Hell's Kitchen</a>
-            <a class="dropdown-item lowereast" href="#LowerEastSide">Lower East Side</a>
-            <a class="dropdown-item murray" href="#MurrayHill">Murray Hill</a>
-            <a class="dropdown-item tribeca" href="#Tribeca">Tribeca</a>
-            <a class="dropdown-item uppereast" href="#Uppereast">Upper East Side</a>
-            <a class="dropdown-item upperwest" href="#Upperwest">Upper West Side</a>
+          <a class="dropdown-item chelsea" href="#Chelsea">Chelsea</a>
+          <a class="dropdown-item eastvillage" href="#EastVillage">East Village</a>
+          <a class="dropdown-item financial" href="#FinancialDistrict">Financial District</a>
+          <a class="dropdown-item greenwich" href="#GreenwichVillage">Greenwich Village</a>
+          <a class="dropdown-item hell" href="#Hell'sKitchen">Hell's Kitchen</a>
+          <a class="dropdown-item lowereast" href="#LowerEastSide">Lower East Side</a>
+          <a class="dropdown-item murray" href="#MurrayHill">Murray Hill</a>
+          <a class="dropdown-item tribeca" href="#Tribeca">Tribeca</a>
+          <a class="dropdown-item uppereast" href="#Uppereast">Upper East Side</a>
+          <a class="dropdown-item upperwest" href="#Upperwest">Upper West Side</a>
         </div>
       </li>
     </ul>
   </div>
 </nav>
-  <body>
-    {{{body}}}
-  </body>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="scripts/mapStyles.js"></script>
-    <script src="scripts/script.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key={{API_KEY}}"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+
+<body>
+  {{{body}}}
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="scripts/script.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
 </html>

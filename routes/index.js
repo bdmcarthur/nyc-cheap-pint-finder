@@ -1,6 +1,8 @@
 "use strict";
 
-const { Router } = require("express");
+const {
+  Router
+} = require("express");
 const router = Router();
 const Bars = require("../models/bar");
 const GMAIL_USER = process.env.GMAIL_USER;
@@ -8,7 +10,7 @@ const GMAIL_PASS = process.env.GMAIL_PASS;
 const nodemailer = require("nodemailer");
 
 router.get("/", (req, res) => {
-  res.render("index", { API_KEY: process.env.API_KEY });
+  res.render("index");
 });
 
 router.get("/bars", (req, res, next) => {
@@ -16,7 +18,9 @@ router.get("/bars", (req, res, next) => {
     if (error) {
       next(error);
     } else {
-      res.status(200).json({ bars: bars });
+      res.status(200).json({
+        bars: bars
+      });
     }
   });
 });

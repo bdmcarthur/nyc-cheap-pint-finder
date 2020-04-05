@@ -5,6 +5,19 @@ body {
   font-size: 1.5em;
 }
 
+.marker {
+  width: 30px;
+  height: 38px;
+  background-repeat: no-repeat;
+  background-image: url('/images/icon.png');
+  cursor: pointer;
+
+}
+
+.mapboxgl-popup-content {
+  padding: 10px 10px 0px 10px;
+}
+
 .info-name {
   font-family: "Fjalla One", sans-serif;
   font-size: 1.5rem;
@@ -35,6 +48,7 @@ h5 {
 .navbar-brand {
   font-size: 1.25em;
 }
+
 /*////////////Header//////////////*/
 .header {
   z-index: -10;
@@ -94,19 +108,24 @@ h5 {
 .navbar {
   background-color: black;
 }
+
 @media screen and (max-width: 931px) {
   #map {
     height: 40vh;
   }
+
   .mapContainer {
     height: 40vh;
   }
+
   .header h1 {
     font-size: 1.5em;
   }
+
   #barContainer {
     padding-bottom: 0;
   }
+
   .bar {
     padding-top: 27rem;
     margin-top: -26rem;
