@@ -18,14 +18,16 @@ window.addEventListener("load", event => {
 fullscreenBtn.addEventListener("click", event => {
   let mapContainer = document.querySelectorAll(".mapContainer");
   if (fullscreenBtn.innerHTML === "Close Map") {
-    mapContainer[0].classList.remove("col-12");
+    mapContainer[0].classList.remove("col-sm-12");
     mapContainer[0].classList.add("col-sm-6");
     fullscreenBtn.innerHTML = "Full Screen Map";
   } else {
     mapContainer[0].classList.remove("col-sm-6");
-    mapContainer[0].classList.add("col-12");
+    mapContainer[0].classList.add("col-sm-12");
     fullscreenBtn.innerHTML = "Close Map";
+
   }
+  map.resize()
 });
 
 getLocationBtn.addEventListener("click", getLocation);
@@ -68,41 +70,42 @@ function getBars() {
           }
         });
       placeMarkers();
-      listBars();
+      createHTML();
     })
     .catch(error => {
       console.log(error);
     });
+  console.log(barList)
 }
 
 function placeMarkers() {
   for (let i = 0; i < barList.length; i++) {
-    var markerHeight = 25,
-      markerRadius = 10,
-      linearOffset = 25;
+    var markerHeight = 25
     var popupOffsets = {
       'bottom': [0, -markerHeight],
     };
     var popup = new mapboxgl.Popup({
         offset: popupOffsets
       })
-      .setHTML(`<div class='HHHHHH'>` +
+      .setHTML(`<div>` +
         `<h5 class="info-name">${barList[i].name}</h5>` +
         `<p class="info-address">${barList[i].address}</p>` +
         `</div>`);
     popupList.push(popup)
-    var el = document.createElement('div');
-    el.className = 'marker';
-    el.id = 'm' + barList[i].name.replace(/\s/g, "")
 
-    var marker = new mapboxgl.Marker(el)
+    let markerDiv = document.createElement('div');
+    markerDiv.className = 'marker';
+    markerDiv.id = 'm' + barList[i].name.replace(/\s/g, "")
+
+    let marker = new mapboxgl.Marker(markerDiv)
       .setLngLat([barList[i].lng, barList[i].lat])
       .setPopup(popup)
       .addTo(map)
 
     markersList.push(marker)
-    let mark = document.getElementById(el.id)
-    mark.addEventListener("click", event => {
+
+    //Go to bar html when marker is clicked on
+    document.getElementById(markerDiv.id).addEventListener("click", event => {
       var slicedName = event.target.id.slice(1, event.target.id.length)
       window.location = "#" + slicedName;
     });
@@ -110,7 +113,7 @@ function placeMarkers() {
 }
 
 //List text of bars next to map
-function listBars() {
+function createHTML() {
   container.innerHTML = "";
   for (let i = 0; i < neighborhood.length; i++) {
     container.innerHTML += `<h2 class="neighborhood" id=${neighborhood[
@@ -163,27 +166,19 @@ function activeClass() {
 
 // Uses active class to center map on whichever bar is on the page and open infowindow
 function changeMap() {
-
   let active = document.querySelector(".active");
   let activeBarID = document.getElementsByClassName("active")[0].id;
-  barList.map((element, index) => {
-    if (element.name.replace(/\s/g, "") === activeBarID) {
-      let lat = element.lat;
-      let long = element.lng;
-
-      popupList.map(item => {
-        item.remove()
-      })
-
-      map.panTo([long, lat], {
-        animate: true
-      });
-
-      markersList[index].togglePopup()
-
-    }
-
+  let bar = barList.find(element => element.name.replace(/\s/g, "") === activeBarID);
+  let index = barList.findIndex(element => element === bar);
+  popupList.map(item => {
+    item.remove()
+  })
+  //zooms to bar on map
+  map.panTo([bar.lng, bar.lat], {
+    animate: true
   });
+  //opens popup
+  markersList[index].togglePopup()
 }
 
 function getLocation() {

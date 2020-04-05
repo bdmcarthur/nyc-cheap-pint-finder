@@ -5,17 +5,14 @@ body {
   font-size: 1.5em;
 }
 
+
+
 .marker {
   width: 30px;
   height: 38px;
   background-repeat: no-repeat;
   background-image: url('/images/icon.png');
   cursor: pointer;
-
-}
-
-.mapboxgl-popup-content {
-  padding: 10px 10px 0px 10px;
 }
 
 .info-name {
@@ -49,6 +46,10 @@ h5 {
   font-size: 1.25em;
 }
 
+.map-buttons .btn {
+  font-size: 1rem;
+}
+
 /*////////////Header//////////////*/
 .header {
   z-index: -10;
@@ -72,11 +73,11 @@ h5 {
 }
 
 #map {
-  height: 100vh;
+  height: 91vh;
 }
 
 .mapContainer {
-  height: 100vh;
+  height: 91vh;
   top: 70px;
 }
 
@@ -84,8 +85,10 @@ h5 {
   position: absolute;
   z-index: 10;
   width: 100%;
-  bottom: 10%;
+  bottom: 0%;
 }
+
+
 
 .barDescription {
   font-size: 1.3rem;
@@ -136,4 +139,25 @@ h5 {
     margin-top: -27rem;
     font-size: 2.75rem;
   }
+
+  .info-name {
+    font-family: "Fjalla One", sans-serif;
+    font-size: 1rem;
+  }
+
+  .barDescription {
+    font-size: 1rem;
+  }
+
+  .info-address {
+    font-family: "Raleway", sans-serif;
+    font-size: .75rem;
+    margin-bottom: 0;
+  }
+
+  .map-buttons .btn {
+    font-size: .75rem;
+  }
+
+
 }
