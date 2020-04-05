@@ -17,15 +17,30 @@ window.addEventListener("load", event => {
 
 fullscreenBtn.addEventListener("click", event => {
   let mapContainer = document.querySelectorAll(".mapContainer");
-  if (fullscreenBtn.innerHTML === "Close Map") {
-    mapContainer[0].classList.remove("col-sm-12");
-    mapContainer[0].classList.add("col-sm-6");
-    fullscreenBtn.innerHTML = "Full Screen Map";
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    if (fullscreenBtn.innerHTML === "Close") {
+      document.getElementById('map').style.height = '40vh'
+      document.querySelector('.mapContainer').style.height = '40vh'
+      document.querySelector('.map-buttons').style.bottom = '0%'
+      fullscreenBtn.innerHTML = "Enlarge Map";
+    } else {
+      document.getElementById('map').style.height = '98vh'
+      document.querySelector('.mapContainer').style.height = '98vh'
+      document.querySelector('.map-buttons').style.bottom = '75px'
+      document.querySelector('.map-buttons').style.top = '0%'
+      document.querySelector('.map-buttons').style.bottom = '0%'
+      fullscreenBtn.innerHTML = "Close";
+    }
   } else {
-    mapContainer[0].classList.remove("col-sm-6");
-    mapContainer[0].classList.add("col-sm-12");
-    fullscreenBtn.innerHTML = "Close Map";
-
+    if (fullscreenBtn.innerHTML === "Close") {
+      mapContainer[0].classList.remove("col-sm-12");
+      mapContainer[0].classList.add("col-sm-6");
+      fullscreenBtn.innerHTML = "Enlarge Map";
+    } else {
+      mapContainer[0].classList.remove("col-sm-6");
+      mapContainer[0].classList.add("col-sm-12");
+      fullscreenBtn.innerHTML = "Close";
+    }
   }
   map.resize()
 });
