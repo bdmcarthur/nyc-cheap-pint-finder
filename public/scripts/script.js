@@ -140,7 +140,7 @@ function createHTML() {
           /\s/g,
           ""
         )}>
-        <h2 class="mb-1" >${barList[j].name}</h2>
+        <h3 class="mb-1" >${barList[j].name}</h3>
         <p class="font-italic barDescription mb-0">${barList[j].address}</p>
         <p class="text-muted barDescription mb-2">${barList[j].type}</p>
         <p class="barDescription">${barList[j].description}</p>
